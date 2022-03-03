@@ -8,6 +8,7 @@ from datetime import datetime, timedelta
 from airflow.operators.bash import BashOperator
 from airflow.models.baseoperator import chain, cross_downstream
 from airflow.utils.email import send_email_smtp
+import time
 import smtplib
 
 
@@ -47,7 +48,7 @@ def _failure(context):
     print(context)
     
 with DAG(dag_id="simple_dag", default_args=default_args, schedule_interval="@daily", 
-    start_date=datetime(2022, 2, 25), catchup=True) as dag:
+    start_date=datetime(2022, 3, 2), catchup=True) as dag:
     downloading_data=PythonOperator(
         task_id='downloading_data',
         python_callable=_downloading_data

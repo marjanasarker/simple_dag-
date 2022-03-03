@@ -33,7 +33,7 @@ with DAG(dag_id="simple_dag_123", default_args=default_args, dagrun_timeout=time
     
     )
     operator_2 =PythonOperator(task_id='operator_data',
-        python_callable=_sleeping,
+        python_callable=_sleeping2,
     
     )
     effectiveness_mapping_gsheet_loader_sensor = ExternalTaskSensor(
@@ -42,7 +42,7 @@ with DAG(dag_id="simple_dag_123", default_args=default_args, dagrun_timeout=time
         external_task_id=None,
         allowed_states=['success'],
         execution_timeout= timedelta(seconds=45), #these are seconds, this is 8 hours
-        dag = dag
+        
     )
 
     sleeping_data >> operator_2
